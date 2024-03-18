@@ -1,4 +1,72 @@
+let playerScore = 0;
+let computerScore = 0;
 
-function logFunction(){
-    console.log("test, hello world!");
+function getAIChoice(){
+    let choices = ["rock","paper","scissors"];
+    let randomNumber = Math.floor(Math.random() * 3);
+
+    return choices[randomNumber];
+}
+
+function getPlayerChoice(){
+    return prompt("Your choice?");
+}
+
+function playRound(playerselection, computerSelection){
+    if(playerselection === null){
+        resetGame();
+        return;
+    }
+    
+    let lowerCasePlayerChoice = playerselection.toLowerCase();
+    if(lowerCasePlayerChoice == computerSelection){
+        return "Draw"
+    }else if(lowerCasePlayerChoice == "rock" && computerSelection == "scissors"){
+        playerScore += 1;
+        return "You win!"
+    }else if(lowerCasePlayerChoice == "rock" && computerSelection == "paper"){
+        computerScore += 1;
+        return "You lose!"
+    }else if(lowerCasePlayerChoice == "paper" && computerSelection == "scissors"){
+        computerScore += 1;
+        return "You lose!"
+    }else if(lowerCasePlayerChoice == "paper" && computerSelection == "rock"){
+        playerScore += 1;
+        console.log(playerScore);
+        return "You win!"
+    }else if(lowerCasePlayerChoice == "scissors" && computerSelection == "paper"){
+        playerScore += 1;
+        return "You win!"
+    }else if(lowerCasePlayerChoice == "scissors" && computerSelection == "rock"){
+        computerScore +=1;
+        return "You lose!"
+    }else{
+        return "Player choice not recognized!"
+    }
+}
+
+function playGame(){
+ 
+    while(playerScore < 3 && computerScore < 3){
+        let result = playRound(getPlayerChoice(),getAIChoice())
+        alert(result);
+    }
+    endGame();
+}
+
+function resetGame(){
+    playerScore = 0;
+    computerScore = 0;
+}
+function endGame(){
+    if(playerScore > computerScore){
+        alert("Congratulations, you won the best of 3!")
+    }else{
+        alert("Dang, you lost this best of 3, better luck next time!")
+    }
+    
+    if(confirm("Restart game?")){
+        resetGame();
+        playGame();
+    }
 }
