@@ -9,16 +9,15 @@ function getAIChoice(){
 }
 
 function getPlayerChoice(){
-    return prompt("Your choice?");
+    let userChoice = prompt("Your choice?");
+    return userChoice
 }
 
 function playRound(playerselection, computerSelection){
-    if(playerselection === null){
-        resetGame();
-        return;
-    }
-    
+
+    if(playerselection === null || computerSelection === undefined) return;
     let lowerCasePlayerChoice = playerselection.toLowerCase();
+
     if(lowerCasePlayerChoice == computerSelection){
         return "Draw"
     }else if(lowerCasePlayerChoice == "rock" && computerSelection == "scissors"){
@@ -41,7 +40,7 @@ function playRound(playerselection, computerSelection){
         computerScore +=1;
         return "You lose!"
     }else{
-        return "Player choice not recognized!"
+        return;
     }
 }
 
@@ -49,6 +48,11 @@ function playGame(){
  
     while(playerScore < 3 && computerScore < 3){
         let result = playRound(getPlayerChoice(),getAIChoice())
+
+        if(result === null || result === undefined){
+            resetGame();
+            return;
+        }
         alert(result);
     }
     endGame();
