@@ -3,8 +3,7 @@ let computerScore = 0;
 
 function getAIChoice(){
     let choices = ["rock","paper","scissors"];
-    let randomNumber = Math.floor(Math.random() * 3);
-
+    let randomNumber = Math.floor(Math.random() * 3); 
     return choices[randomNumber];
 }
 
@@ -14,8 +13,7 @@ function getPlayerChoice(){
 }
 
 function playRound(playerselection, computerSelection){
-
-    if(playerselection === null || computerSelection === undefined) return;
+    if(playerselection === null || playerselection === undefined) return;
     let lowerCasePlayerChoice = playerselection.toLowerCase();
 
     if(lowerCasePlayerChoice == computerSelection){
@@ -40,13 +38,13 @@ function playRound(playerselection, computerSelection){
         computerScore +=1;
         return "You lose!"
     }else{
-        return;
+        return "Choice unrecognized!";
     }
 }
 
-function playGame(){
- 
-    while(playerScore < 3 && computerScore < 3){
+function playGame(numberOfRounds = 3){
+    //Calls playround() until either player or computer has won the provided numberOfRounds (default 3)
+    while(playerScore < numberOfRounds && computerScore < numberOfRounds){
         let result = playRound(getPlayerChoice(),getAIChoice())
 
         if(result === null || result === undefined){
@@ -63,11 +61,9 @@ function resetGame(){
     computerScore = 0;
 }
 function endGame(){
-    if(playerScore > computerScore){
-        alert("Congratulations, you won the best of 3!")
-    }else{
-        alert("Dang, you lost this best of 3, better luck next time!")
-    }
+    playerScore > computerScore ? 
+    alert("Congratulations!, you won this best of 3") : 
+    alert("Dang, you lost this best of 3, better luck next time!") 
     
     if(confirm("Restart game?")){
         resetGame();
