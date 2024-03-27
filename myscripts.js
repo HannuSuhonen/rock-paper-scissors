@@ -29,7 +29,6 @@ function playRound(playerselection, computerSelection){
         return "You lose!"
     }else if(lowerCasePlayerChoice == "paper" && computerSelection == "rock"){
         playerScore += 1;
-        console.log(playerScore);
         return "You win!"
     }else if(lowerCasePlayerChoice == "scissors" && computerSelection == "paper"){
         playerScore += 1;
@@ -60,6 +59,7 @@ function resetGame(){
     playerScore = 0;
     computerScore = 0;
 }
+
 function endGame(){
     playerScore > computerScore ? 
     alert("Congratulations!, you won this best of 3") : 
