@@ -70,3 +70,38 @@ function endGame(){
         playGame();
     }
 }
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        switch(button.innerText){
+            case "Rock":
+                console.log("Rock chosen");
+                playRound("Rock",getAIChoice());
+                break;
+            case "Paper":
+                playRound("Paper",getAIChoice());
+
+                console.log("Paper chosen");
+                break;
+            case "Scissors":
+                playRound("Scissors",getAIChoice());
+
+                console.log("Scissors chosen");
+                break;
+            default:
+                console.log("Choice unidentified");
+        }
+        updateScore();
+    })
+});
+
+
+
+function updateScore(){
+    const results = document.querySelector(".score");
+
+    results.firstElementChild.innerText = `player score: ${playerScore}`
+    results.lastElementChild.innerText = `cpu score: ${computerScore}`
+}
