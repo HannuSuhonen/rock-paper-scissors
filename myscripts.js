@@ -34,9 +34,9 @@ function playRound(playerselection, computerSelection){
 
 function endGame(numberOfRounds = 5){
     if(playerScore === numberOfRounds || computerScore === numberOfRounds){
-        const resultText = document.querySelector("h2");
+        const resultText = document.querySelector(".result");
         playerScore > computerScore ? 
-        resultText.innerText = `Congratulations!, you won this best of ${numberOfRounds}` : 
+        resultText.innerText = `Congratulations! You won this best of ${numberOfRounds}` : 
         resultText.innerText = `Dang, you lost this best of ${numberOfRounds}, better luck next time!`;
     }
 }
