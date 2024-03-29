@@ -58,22 +58,12 @@ function playRound(playerselection, computerSelection){
     }
 }
 
-// function endGame(numberOfRounds = 5){
-//     if(playerScore === numberOfRounds || computerScore === numberOfRounds){
-//         const resultText = document.querySelector(".result");
-//         playerScore > computerScore ? 
-//         resultText.innerText = `Congratulations! You won this best of ${numberOfRounds}` : 
-//         resultText.innerText = `Dang, you lost this best of ${numberOfRounds}, better luck next time!`;
-//     }
-// }
-
 const buttons = document.querySelectorAll("input");
 
 buttons.forEach((input) => {
     input.addEventListener("click", () => {
         playRound(input.className,getAIChoice());
         updateScore();
-        //endGame(5);
     })
 });
 
