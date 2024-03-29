@@ -1,5 +1,6 @@
 let playerScore = 0;
 let computerScore = 0;
+const roundText = document.querySelector(".round")
 
 function getAIChoice(){
     let choices = ["rock","paper","scissors"];
@@ -10,7 +11,6 @@ function getAIChoice(){
 function playRound(playerselection, computerSelection){
     if(playerselection === null || playerselection === undefined) return;
     let lowerCasePlayerChoice = playerselection.toLowerCase();
-    const roundText = document.querySelector(".round")
 
     if(lowerCasePlayerChoice == computerSelection){
         roundText.innerText = "Draw";
@@ -52,7 +52,6 @@ function playRound(playerselection, computerSelection){
         roundText.innerText = `Lose! AI chose ${computerSelection}`;
         roundText.style.color = "red"
 
-
     }else{
         console.log("ERROR");
     }
@@ -64,6 +63,7 @@ buttons.forEach((input) => {
     input.addEventListener("click", () => {
         playRound(input.className,getAIChoice());
         updateScore();
+        blink();
     })
 });
 
@@ -71,4 +71,9 @@ function updateScore(){
     const texts = document.querySelector(".score").children;
     texts.item(1).innerText = `Player score: ${playerScore}`
     texts.item(2).innerText = `AI score: ${computerScore}`
+}
+
+function blink(){
+    roundText.classList.add("blink")
+    setTimeout(() => roundText.classList.remove("blink"),1000);
 }
